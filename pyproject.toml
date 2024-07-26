@@ -9,8 +9,14 @@ readme = "README.md"
 python = "^3.12"
 django = "^5.0.7"
 djangorestframework = "^3.15.2"
+pytest = "^8.3.2"
+pytest-django = "^4.8.0"
+django-extensions = "^3.2.3"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "trading_system.settings"
