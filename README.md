@@ -2,7 +2,8 @@
 
 Please build a simple trading system as a pure REST API with the endpoints outlined below. We
 want to allow authenticated users the ability to place orders to buy and sell stocks and track the
-overall value of their investments. Stock model will have 3 fields, they are id, name, and price. Id is the primary key in the Stock model.
+overall value of their investments. Stock model will have 3 fields, they are id, name, and price. 
+Id is the primary key in the Stock model.
 
 ## Endpoints:
 1. Create an endpoint to let users place trades. When an order is placed we need to record
@@ -27,14 +28,14 @@ stock. Order value is calculated by multiplying quantity and stock price.
 12. Show Trade and Stock modules in Django Admin
 
 
-#### CSV Portion:
-Create a CSV file with columns called "username" with value "admin, another column "stock" with integer values allowed, 
-another column called 'quantity' with integer values allowed, another column 'trade_type' which can accept either 'BUY' or 'SELL' as value. 
-Another column is 'stock_name' which should be a company name, another column is 'stock_price' which should be integer value below 500. 
-Create 10 rows with this information.
-
-
-
 
 ## Possible Future Works:
 1. Probably Add Token Authentication of Django DRF?
+
+## About requirements:
+1. I think it is important to keep track of which user holds which stocks and 
+also how many of those. But the requirements are not clear if we need to check valid quantity and
+ownership of stocks before buying or selling. To do this, we will need another model called 'StockOwnership' having 3 fields 'user', 'stock', and 'quantity' where both 'user' and 'stock' are foreign key. And then we need to establish relationship between Trade, StockOwnership and Stock models before a buy or sell.
+2. I think that "the total value invested" should be calculated by current holding quantity and price. Anyway, I have done according to the requirement.
+3. For this project I could not see a necessary case to use SOLID principles. However, since Django uses MVT architecture, it is very extensible by design.
+4. 
