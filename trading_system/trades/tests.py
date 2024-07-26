@@ -44,19 +44,21 @@ def test_total_value(api_client, user, stock):
     assert response.data["total_value"] == 1500.0
 
 
-class TradeTestCase(TestCase):
+@pytest.mark.django_db
+def test_total_value_for_unknown_stock_id(api_client, user, stock):
+    Trade.objects.create(user=user, stock=stock, quantity=10, trade_type="BUY")
+    Trade.objects.create(user=user, stock=stock, quantity=5, trade_type="BUY")
+    response = api_client.get(f"/api/stocks/9999/value/")
+    assert response.status_code == 422
+    assert response.data == {'error': 'stock id 9999 does not exist!'}
+
+class TradeTestCaseUnit(TestCase):
     def setUp(self):
         self.user = User.objects.create(username="testuser")
         self.stock = Stock.objects.create(id=100, name="Test Stock", price=100)
 
-    def test_create_trade(self):
-        trade = Trade.objects.create(
-            user=self.user, stock=self.stock, quantity=10, trade_type="BUY"
-        )
-        self.assertEqual(trade.quantity, 10)
-        self.assertEqual(trade.trade_type, "BUY")
 
-    def test_total_value(self):
+    def test_total_value_logic(self):
         Trade.objects.create(
             user=self.user, stock=self.stock, quantity=10, trade_type="BUY"
         )

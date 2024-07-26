@@ -1,0 +1,11 @@
+username,stock,quantity,trade_type,stock_name,stock_price
+admin,1001,50,BUY,CompanyA,100
+admin,1002,100,SELL,CompanyB,200
+admin,1003,75,BUY,CompanyC,150
+admin,1004,200,SELL,CompanyD,300
+admin,1005,50,BUY,CompanyE,120
+admin,1006,150,SELL,CompanyF,250
+admin,1007,100,BUY,CompanyG,180
+admin,1008,75,SELL,CompanyH,220
+admin,1009,200,BUY,CompanyI,400
+admin,1010,100,SELL,CompanyJ,350
