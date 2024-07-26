@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .models import Stock, Trade
 from .serializers import StockSerializer, TradeSerializer
+import structlog
+
+logger = structlog.get_logger(__name__)
 
 
 class TradeCreateView(generics.CreateAPIView):
@@ -21,6 +24,7 @@ class TotalValueView(generics.GenericAPIView):
         try:
             stock = Stock.objects.get(id=stock_id)
         except Stock.DoesNotExist:
+            logger.info("Stock does not exist")
             return Response(status=422, data={"error": f"stock id {stock_id} does not exist!"})
         trades = Trade.objects.filter(user=user, stock=stock)
         total_value = sum(trade.quantity * stock.price for trade in trades)
