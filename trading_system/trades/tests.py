@@ -70,13 +70,13 @@ def test_total_value_for_unknown_stock_id(api_client, user, stock):
     Trade.objects.create(user=user, stock=stock, quantity=5, trade_type="BUY")
     response = api_client.get(f"/api/stocks/9999/value/")
     assert response.status_code == 422
-    assert response.data == {'error': 'stock id 9999 does not exist!'}
+    assert response.data == {"error": "stock id 9999 does not exist!"}
+
 
 class TradeTestCaseUnit(TestCase):
     def setUp(self):
         self.user = User.objects.create(username="testuser")
         self.stock = Stock.objects.create(id=100, name="Test Stock", price=100)
-
 
     def test_total_value_logic(self):
         Trade.objects.create(

@@ -29,8 +29,6 @@ stock. Order value is calculated by multiplying quantity and stock price.
 
 
 
-## Possible Future Works:
-1. Probably Add Token Authentication of Django DRF?
 
 ## About requirements:
 1. I think it is important to keep track of which user holds which stocks and 
@@ -38,4 +36,8 @@ also how many of those. But the requirements are not clear if we need to check v
 ownership of stocks before buying or selling. To do this, we will need another model called 'StockOwnership' having 3 fields 'user', 'stock', and 'quantity' where both 'user' and 'stock' are foreign key. And then we need to establish relationship between Trade, StockOwnership and Stock models before a buy or sell.
 2. I think that "the total value invested" should be calculated by current holding quantity and price. Anyway, I have done according to the requirement.
 3. For this project I could not see a necessary case to use SOLID principles. However, since Django uses MVT architecture, it is very extensible by design.
-4. 
+ 
+
+## Possible Future Works:
+1. Probably Add Token Authentication of Django DRF?
+2. Check stock quantity before a buy or sell which is not clear from the requirements

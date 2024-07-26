@@ -25,7 +25,9 @@ class TotalValueView(generics.GenericAPIView):
             stock = Stock.objects.get(id=stock_id)
         except Stock.DoesNotExist:
             logger.info("Stock does not exist")
-            return Response(status=422, data={"error": f"stock id {stock_id} does not exist!"})
+            return Response(
+                status=422, data={"error": f"stock id {stock_id} does not exist!"}
+            )
         trades = Trade.objects.filter(user=user, stock=stock)
         total_value = sum(trade.quantity * stock.price for trade in trades)
         return Response({"total_value": total_value})
